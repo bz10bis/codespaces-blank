@@ -15,13 +15,13 @@ INPUT_S = '''\
 EXPECTED = ""
 
 @pytest.mark.parametrize(
-    ('inputs_s', 'expected'),
+    ('input_s', 'expected'),
     (
         (INPUT_S, EXPECTED)
     )
 )
 def test(input_s: str, expected) -> None:
-    assert compute(input_s == expected)
+    assert compute(input_s) == expected
 
 
 def main() -> int:
