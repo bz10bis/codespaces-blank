@@ -5,7 +5,7 @@ import string
 
 INPUT_TXT = os.path.join(os.path.dirname(__file__), "input.txt")
 
-def get_letter_val(letter: str): 
+def get_letter_val(letter: str):
     if ord(letter) > 91:
         return ord(letter) - 96
     return ord(letter) - 38
