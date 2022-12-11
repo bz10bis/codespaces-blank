@@ -17,8 +17,8 @@ EXPECTED = ""
 @pytest.mark.parametrize(
     ('input_s', 'expected'),
     (
-        (INPUT_S, EXPECTED)
-    )
+        (INPUT_S, EXPECTED),
+    ),
 )
 def test(input_s: str, expected) -> None:
     assert compute(input_s) == expected
@@ -26,8 +26,7 @@ def test(input_s: str, expected) -> None:
 
 def main() -> int:
     with open("input.txt", "r", encoding="utf-8") as f:
-        input_content = f.read().splitlines()
-        breakpoint()
+        input_content = f.read()
     return 0
 
 if __name__ == "__main__":
