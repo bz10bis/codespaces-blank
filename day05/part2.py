@@ -1,6 +1,7 @@
 import pytest
 import os.path
 import re
+from collections import deque
 
 INPUT_TXT = os.path.join(os.path.dirname(__file__), "input.txt")
 
@@ -20,9 +21,12 @@ def compute(input_str: str) -> str:
         m = int(x[1])
         f = int(x[3])-1
         t = int(x[5])-1
-        for _ in range(m):
-            c_stacks[t].insert(0, c_stacks[f][0])
-            c_stacks[f].pop(0)
+        c_stacks[t] = deque(c_stacks[t])
+        tmp_s = c_stacks[f][:m]
+        tmp_s.reverse()
+        c_stacks[t].extendleft(tmp_s)
+        c_stacks[t] = list(c_stacks[t])
+        del c_stacks[f][:m]
     res = "".join([x[0] for x in c_stacks])
     return res
 
@@ -39,7 +43,7 @@ move 2 from 2 to 1
 move 1 from 1 to 2
 '''
 
-EXPECTED = "CMZ"
+EXPECTED = "MCD"
 
 @pytest.mark.parametrize(
     ('input_s', 'expected'),
